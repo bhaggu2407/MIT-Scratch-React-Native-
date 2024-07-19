@@ -1,4 +1,5 @@
 // App.js
+// I implemented all the functionality buy when I integrate all the screens together, the draggable sections don’t work and break the styling.
 import React from 'react';
 import {
   View,
@@ -7,7 +8,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  ScrollView,
 } from 'react-native';
+import {
+  DndProvider,
+  DndProviderProps,
+  Draggable,
+  Droppable,
+} from '@mgcrea/react-native-dnd';
+import {GestureHandlerRootView, State} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
 import DraggableFlatList from 'react-native-draggable-flatlist'; // Replace with a suitable drag-and-drop library for React Native
 import Sidebar from './components/SideBar';
@@ -41,6 +50,7 @@ function App({complist, update_list}) {
       old_list[dest_index].comps = dest_comp_list;
     }
   };
+  console.log(Sidebar);
 
   return (
     <View style={styles.container}>
@@ -56,8 +66,29 @@ function App({complist, update_list}) {
           <Text style={styles.githubText}>GitHub</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.mainContent}>
-        <DraggableFlatList onDragEnd={onDragEnd}>
+      <View>
+        {/* <View>
+          <Sidebar />
+        </View> */}
+        <GestureHandlerRootView
+          style={{flex: 1, height: 5000, overflow: 'scroll'}}>
+          <DndProvider
+            onDragEnd={onDragEnd}
+            style={{height: 5000, overflow: 'scroll'}}>
+            <View style={styles.mainContent}>
+              <ScrollView style={styles.SidebarContainer}>
+                <Sidebar />
+              </ScrollView>
+              <View style={styles.midAreaContainer}>
+                <MidArea />
+              </View>
+            </View>
+            {/* <View style={styles.previewAreaContainer}>
+              <PreviewArea />
+            </View> */}
+          </DndProvider>
+        </GestureHandlerRootView>
+        {/* <DraggableFlatList onDragEnd={onDragEnd}>
           <View style={styles.midAreaContainer}>
             <Sidebar />
             <MidArea />
@@ -65,7 +96,7 @@ function App({complist, update_list}) {
           <View style={styles.previewAreaContainer}>
             <PreviewArea />
           </View>
-        </DraggableFlatList>
+        </DraggableFlatList> */}
       </View>
     </View>
   );
@@ -106,16 +137,25 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     flexDirection: 'row',
+    // width: '100%',
+    height: 5000,
+  },
+  SidebarContainer: {
+    flex: 1,
+    backgroundColor: 'yellow',
+    height: 5000,
+    overflow: 'scroll',
   },
   midAreaContainer: {
-    flex: 2,
-    backgroundColor: '#ffffff',
+    flex: 1,
+    backgroundColor: '#222',
     borderTopWidth: 1,
     borderRightWidth: 1,
     borderColor: '#cfd8dc',
     borderRadius: 10,
     marginRight: 8,
-    overflow: 'hidden',
+    height: 5000,
+    // overflow: 'hidden',
   },
   previewAreaContainer: {
     flex: 1,

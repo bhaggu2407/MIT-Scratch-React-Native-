@@ -18,25 +18,31 @@ import {
 
 const Sidebar = () => {
   // Function to render draggable list items
-  const renderItem = ({item, index, drag, isActive}) => (
-    <TouchableOpacity
-      style={[
-        styles.listItem,
-        {backgroundColor: isActive ? '#e0e0e0' : '#ffffff'},
-      ]}
-      onLongPress={drag}>
-      {getComponent(item)}
-    </TouchableOpacity>
-  );
+  const renderItem = ({item, index, drag, isActive}) => {
+    console.log(item);
+    return (
+      <TouchableOpacity
+        style={[
+          styles.listItem,
+          {backgroundColor: isActive ? '#e0e0e0' : '#ffffff'},
+        ]}
+        onLongPress={drag}>
+        {getComponent(item)}
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Side Bar</Text>
 
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        contentContainerStyle={styles.scrollView}>
         {/* Motion */}
         <Text style={styles.sectionHeader}>Motion</Text>
         <DraggableFlatList
+          nestedScrollEnabled={true}
           data={motionComponents}
           renderItem={renderItem}
           keyExtractor={item => `${item}-motion`}
@@ -49,6 +55,7 @@ const Sidebar = () => {
         {/* Looks */}
         <Text style={styles.sectionHeader}>Looks</Text>
         <DraggableFlatList
+          nestedScrollEnabled={true}
           data={looksComponents}
           renderItem={renderItem}
           keyExtractor={item => `${item}-looks`}
@@ -61,6 +68,7 @@ const Sidebar = () => {
         {/* Control */}
         <Text style={styles.sectionHeader}>Control</Text>
         <DraggableFlatList
+          nestedScrollEnabled={true}
           data={controlComponents}
           renderItem={renderItem}
           keyExtractor={item => `${item}-control`}
@@ -73,6 +81,7 @@ const Sidebar = () => {
         {/* Events */}
         <Text style={styles.sectionHeader}>Events</Text>
         <DraggableFlatList
+          nestedScrollEnabled={true}
           data={eventsComponents}
           renderItem={renderItem}
           keyExtractor={item => `${item}-events`}

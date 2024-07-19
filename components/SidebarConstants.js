@@ -4,7 +4,6 @@ export const motionComponents = [
   'MOVE_Y',
   'TURN_CLOCKWISE',
   'TURN_ANTI_CLOCKWISE',
-  'GOTO_XY',
 ];
 
 export const looksComponents = [
@@ -15,9 +14,8 @@ export const looksComponents = [
   'HIDE_MESSAGE',
   'SIZE',
   'SHOW',
-  'HIDE',
 ];
 
 export const eventsComponents = ['BROADCAST'];
 
-export const controlComponents = ['WAIT', 'REPEAT'];
+export const controlComponents = ['WAIT'];

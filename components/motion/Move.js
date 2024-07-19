@@ -51,6 +51,8 @@ const mapStateToProps = state => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    width: 200,
+    height: 100,
     marginVertical: 10,
     marginHorizontal: 'auto',
   },

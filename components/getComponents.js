@@ -19,6 +19,7 @@ import ThinkWithTimer from './looks/ThinkWithTimer';
 
 // fetch components based on different keys
 export const getComponent = (key, id) => {
+  console.log(key);
   switch (key) {
     case 'MOVE_Y':
       return <MoveY comp_id={id} />;
