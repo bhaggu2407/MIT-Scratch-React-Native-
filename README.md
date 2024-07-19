@@ -1,3 +1,4 @@
+I implemented all the functionality buy when I integrate all the screens together, the draggable sections don’t work and break the styling.
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
